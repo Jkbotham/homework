@@ -78,6 +78,14 @@ hr {
     bottom: 0;
 }
 
+.projects {
+    padding: 15px;
+}
+
+.btn {
+    background-color: #4aaaa5;
+    color: white;
+    border: none;
 /*
 header {
     background-color: #ffffff;
