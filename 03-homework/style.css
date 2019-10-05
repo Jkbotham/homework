@@ -12,3 +12,6 @@ h1 {
 #sent {
     max-height: 200px;
 }
+.copyBtn {
+    align-items: right;
+}

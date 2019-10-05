@@ -1,45 +1,69 @@
-var numberEl = document.getElementById("numbers");
-var sCharEl = document.getElementById("special");
-var lCaseEl = document.getElementById("lowerCase");
-var uCaseEl = document.getElementById("upperCase");
-var genPw = document.getElementById("gen");
-var sent = document.getElementById("sent");
-var inputBox= document.getElementById("inputBox");
+const numberEl = document.getElementById("numbers");
+const sCharEl = document.getElementById("special");
+const lCaseEl = document.getElementById("lowerCase");
+const uCaseEl = document.getElementById("upperCase");
+const genPwBtn = document.getElementById("gen");
+const passwordLengthSlider = document.getElementById("cRange");
+const sliderLengthDisplay = document.getElementById("sAmount");
 
-var i = document.getElementById("cRange"),
-    o = document.getElementById("sAmount");
+sliderLengthDisplay.innerHTML = passwordLengthSlider.value;
 
-    o.innerHTML = i.value;
-
-i.addEventListener('input', function (){
-    o.innerHTML = i.value;
+//Listen for input changes on the slider and display back to user.
+passwordLengthSlider.addEventListener('input', function () {
+    sliderLengthDisplay.innerHTML = passwordLengthSlider.value;
 });
 
-genPw.addEventListener("click", function() {
-    var j = i.value;
-    var incChar = "";
-    function passwordgen(length) {
-        var result = "";
-        var sChar = "!'(&)*+,-.%/:;<=>?@][$^_`{|#}~";
-        var uCase = "QWERTYUIOPASDFGHJKLZXCVBNM";
-        var lCase =  uCase.toLowerCase();
-        var bers = "1234567890";
-        var array = [numberEl.checked, sCharEl.checked, lCaseEl.checked, uCaseEl.checked];
-        var trueArray = [bers, sChar, lCase, uCase];
+function getSelectedPasswordOptions() {
+    const generatePasswordOptions = [
+        {
+            checked: numberEl.checked,
+            charOptions: "1234567890"
+        },
+        {
+            checked: sCharEl.checked,
+            charOptions: "!'(&)*+,-.%/:;<=>?@][$^_`{|#}~"
+        },
+        {
+            checked: lCaseEl.checked,
+            charOptions: "QWERTYUIOPASDFGHJKLZXCVBNM".toLowerCase()
+        },
+        {
+            checked: uCaseEl.checked,
+            charOptions: "QWERTYUIOPASDFGHJKLZXCVBNM"
+        }
+    ];
 
-        for ( var k = 0; k < array.length; k++ ) {
-            if (array[k] === true){
-                incChar += trueArray[k] ;
-                };;
-                };
+    return generatePasswordOptions
+        //Filter out options that are not checked.
+        .filter(function(option) {return option.checked})
+        //Map only the character options back in response.
+        .map(function(option) {return option.charOptions});
+}
 
-        for ( var z = 0; z < length; z++ ) {
-            result += incChar.charAt(Math.floor(Math.random() * incChar.length));
-            }
-        return result;
-    };
-    console.log(incChar, numberEl.checked,sCharEl.checked,lCaseEl.checked,uCaseEl.checked,j,passwordgen(j));
-    sent.innerHTML = passwordgen(j);
+function generateRandomPasswordFromLength(passwordLength) {
+    let result = "";
+    //Get the password options based on user's selections and join them into one string of options for random generation.
+    const characterOptions = getSelectedPasswordOptions().join('');
 
-})
+    //If there are no character options selected then display an error to the user.
+    if(!characterOptions) {
+        alert('Please select at least one option to generate a random password.');
+        return;
+    }
 
+    //Loop through length of password building a result string of randomly chosen characters based on user's input.
+    for ( let z = 0; z < passwordLength; z++ ) {
+        result += characterOptions.charAt(Math.floor(Math.random() * characterOptions.length));
+    }
+
+    return result;
+}
+
+genPwBtn.addEventListener("click", function() {
+    //Get length of password
+    const passwordLength = passwordLengthSlider.value;
+    //Get the text area to output password into
+    const passwordTextAreaOutput = document.getElementById("sent");
+    //Generate password and put it into the HTML
+    passwordTextAreaOutput.innerHTML = generateRandomPasswordFromLength(passwordLength);
+});
