@@ -9,3 +9,6 @@ body {
 h1 {
     text-align: center;
 }
+#sent {
+    max-height: 200px;
+}
