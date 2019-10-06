@@ -11,6 +11,6 @@ The generator has 5 variables you can include in your desired password
     -Lowercase Characters
     -Uppercase Characters
 
-The next iteration of this generation will include a copy button.
+The next iteration of this generator will include a copy button.
 
 <img src="img/screenShot.png">
