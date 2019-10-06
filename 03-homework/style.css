@@ -4,6 +4,7 @@
 body {
     max-width: 900px;
     margin: auto;
+    background-color: lightgray;
 }
 
 h1 {
@@ -12,6 +13,4 @@ h1 {
 #sent {
     max-height: 200px;
 }
-.copyBtn {
-    align-items: right;
-}
+

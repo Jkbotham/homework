@@ -2,10 +2,10 @@ const numberEl = document.getElementById("numbers");
 const sCharEl = document.getElementById("special");
 const lCaseEl = document.getElementById("lowerCase");
 const uCaseEl = document.getElementById("upperCase");
-const genPwBtn = document.getElementById("gen");
+const genPwBtn = document.getElementById("generateBtn");
 const passwordLengthSlider = document.getElementById("cRange");
 const sliderLengthDisplay = document.getElementById("sAmount");
-
+const passwordOutputField = document.getElementById("generatedPass");
 sliderLengthDisplay.innerHTML = passwordLengthSlider.value;
 
 //Listen for input changes on the slider and display back to user.
@@ -59,11 +59,13 @@ function generateRandomPasswordFromLength(passwordLength) {
     return result;
 }
 
-genPwBtn.addEventListener("click", function() {
+genPwBtn.addEventListener("click", function(event) {
+    //Prevents browser from refreshing
+    event.preventDefault();
     //Get length of password
     const passwordLength = passwordLengthSlider.value;
     //Get the text area to output password into
-    const passwordTextAreaOutput = document.getElementById("sent");
+    const passwordTextAreaOutput = passwordOutputField;
     //Generate password and put it into the HTML
     passwordTextAreaOutput.innerHTML = generateRandomPasswordFromLength(passwordLength);
 });
