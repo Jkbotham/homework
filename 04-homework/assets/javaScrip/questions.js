@@ -1,4 +1,4 @@
-var questions = [
+var question = [
     {
         title: "Whichis the youngest American City?",
         choices: ["Killeen, TX", "Jacksonville, NC", "Paramount, CA", "Layton, CA"],
