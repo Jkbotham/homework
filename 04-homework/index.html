@@ -19,8 +19,8 @@
 
     <nav class="nav justify-content-center nav-pills nav-fill navbar-expand-lg navbar-light bg-light border rounded"
       id="navLinks">
-      <a class="nav-link active" href="#">Game</a>
-      <a class="nav-link" href="highscores.html">High Scores</a>
+      <a class="nav-link active" href="index.html">Game</a>
+      <button type="button" class="btn btn-primary" id="theScore">High Scores</button>
     </nav>
   </div>
   </div>
@@ -39,6 +39,8 @@
             <div class="col-md-12">
               <div class="card-body p-3 mb-2 bg-white text-dark" id="cBody">
                 <h6 class="timer">Time Remaining: 100</h6>
+                <br>
+                <h6 class="score">Score: 0</h6>
               </div>
               <div class="row">
                 <div class="col-md-12 textCenter questionBody">
@@ -49,7 +51,8 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-12 nxtQuest"></div>
+                <div class="col-md-12" id="nxtQuest">
+                </div>
               </div>
             </div>
           </div>
@@ -70,3 +73,5 @@
 </body>
 
 </html>
+
+

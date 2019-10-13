@@ -1,58 +1,142 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     var i = 100;
     var x = 0;
-    var playerScore = "";
+    var playerScore = 0;
+    var highScores = JSON.parse(localStorage.getItem("mScore"));
+    var nScore = [];
 
-     console.log(question[x].title);
-$("#startButton").on("click", function(){
-   
-    questionSort();
-    empty();
-    timeInt();
-    writeQuestion();
+    $("#startButton").on("click", function () {
+        questionSort();
+        empty();
+        timeInt();
+        writeQuestion();
+        writeAnswer();
+        console.log(highScores, nScore)
+    });
 
-});
+    $(".uAnswer").on("click", function () {
+        userAnswer();
+    });
 
-// Creates the question elements, inserts the question from randomized array.  Creates buttons for all answers an dassigns classes and appends them to the page.
-function writeQuestion() {
-    var titleQuestion = $("<h5>")
-    titleQuestion.attr("class", "pageQuestion");
-    titleQuestion.text(question[x].title);
-    $(".questionBody").append(titleQuestion,"<br>");
-
-    question[x].choices.forEach(function(element) {
-        var newAnswerBtn = $('<button type="button" class="btn btn-primary btn-lg answer">');
-        newAnswerBtn.text(element);
-        $(".questionBody").append(newAnswerBtn,"<br><br>");
-      });  
-      
-    $(".questionBody").append("<br class='vBreak'>");
-}
+    $("#theScore").on("click", function () {
+        empty();
+        printHigh();
+    })
 
 
-// Starts the timer and updates timer on website
-function timeInt () {
-    setInterval(function() { 
-        if(i > 0) {
-            i--;
-            $(".timer").text("Time Remaining: " + i);
+
+    // Creates the question elements, inserts the question from randomized array.  Creates buttons for all answers an dassigns classes and appends them to the page.
+    function writeQuestion() {
+        var titleQuestion = $("<h5>")
+        titleQuestion.attr("class", "pageQuestion");
+        titleQuestion.text(question[x].title);
+        $(".questionBody").append(titleQuestion, "<br>");
+    };
+
+    function writeAnswer() {
+
+        var numbQuestion = question[x].choices.length;
+        for (var z = 0; z < numbQuestion; z++) {
+            var newBtn = $('<button type="button" class="btn btn-primary btn-lg uAnswer">');
+            newBtn.attr("data", question[x].choices[z])
+            newBtn.text(question[x].choices[z]);
+            $(".questionBody").append(newBtn, '<br><br>');
+        };
+        $(".questionBody").append('<hr>');
+        $("#nxtQuest").append('<button type="button" class="btn btn-primary btn-lg float-right nQuestion">Next Question</button>');
+        $(".uAnswer").on("click", function () {
+            console.log($(this).text());
+            userAnswer();
+            if ($(this).text() === question[x].answer) {
+                playerScore += 10;
+                $(".uAnswer").attr('disabled', 'disabled');
+                $("#nxtQuest").append("<h3 class='correct'>That is correct! +10 points</h3>")
             }
-        },1000);
-}
+            else {
+                $("#nxtQuest").append("<h3 class='incorrect'>That is incorrect. -10 Seconds</h3>")
+                $(".uAnswer").attr('disabled', 'disabled');
+                i -= 10;
+            }
+        });
+    };
 
 
-// Empties the contents of the main content div
-function empty() {
-    $(".questionBody").empty();
-};
+    function gameOver() {
+        empty();
+        $(".questionBody").append("<h2 class='gOver'>Game Over<h2>", "<h3>You Scored: " + playerScore + " Points! <h2>", '<hr>', "<input class='form-control' type='text' placeholder='Enter Your Initials' id='formInitials'>", '<button type="button" class="btn btn-primary" id="theScore">Submit</button>');
+        $("#cBody").empty();
+        $("#subBtn").on("click", function () {
+            var scoreInitials = $("#formInitials").val();
+
+            if (highScores === null) {
+                // nScore.score.push(playerScore);
+                // nScore.name.push(scoreInitials);
+                nScore.push([playerScore, scoreInitials]);
+                localStorage.setItem("mScore", JSON.stringify(nScore));
+            }
+            else {
+                highScores.push([playerScore, scoreInitials]);
+                localStorage.setItem("mScore", JSON.stringify(highScores));
+            }
+            console.log(nScore);
+            console.log(highScores);
+        })
+    }
+    function userAnswer() {
+        $(".nQuestion").on("click", function () {
+            x++;
+            empty();
+            writeQuestion();
+            writeAnswer();
+        });
+    };
 
 
-// Randomizes question order
-function questionSort() {
-   question.sort(function() {
-        return .5 - Math.random();
+    // Starts the timer and updates timer on website
+    function timeInt() {
+        var time = setInterval(function () {
+            if (i < 0) {
+                gameOver();
+                clearInterval(time);
+            }
+            else {
+                i--;
+                $(".timer").text("Time Remaining: " + i);
+                $(".score").text("Score: " + playerScore);
+                ;
+            }
+        }, 1000);
+    }
+
+
+    // Empties the contents of the main content div
+    function empty() {
+        $(".questionBody").empty();
+        $("#nxtQuest").empty();
+    };
+
+
+    // Randomizes question order
+    function questionSort() {
+        question.sort(function () {
+            return .5 - Math.random();
         })
         console.log(question);
     };
+    function printHigh() {
+        $("#cBody").empty();
+        $("h1").text("High Score");
+        highScores.sort();
+        $(".questionBody").append("<ol class='list'>")
+        for (i = highScores.length - 1; i > -1; i--) {
+            var scoree = $("<li>");
+            scoree.attr("id", "li" + i);
+            scoree.text(highScores[i][1] + " " + highScores[i][0]);
+            $(".list").append(scoree);
+            console.log(highScores);
+        };
+        $("#list").append("</ol>")
+    };
 });
+

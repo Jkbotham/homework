@@ -36,3 +36,29 @@ max-width: 900px;
 .textCenter {
     text-align: center;
 }
+
+.vBreak {
+    width: 90%;
+    border-color: lightgray;
+
+}
+
+.score {
+    text-align: end;
+}
+.nQuestion, h3 {
+    margin: 1rem;
+}
+
+#formInitials {
+    width: 20rem;
+}
+#idlabel{
+    margin: .75rem;
+    float: left;
+}
+#subBtn, #formInitials {
+    margin: 1rem;
+    float: left;
+
+}
