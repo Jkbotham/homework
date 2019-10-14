@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    var i = 100;
+    var i = 10;
     var x = 0;
     var playerScore = 0;
     var highScores = JSON.parse(localStorage.getItem("mScore"));
@@ -64,11 +64,11 @@ $(document).ready(function () {
 
     function gameOver() {
         empty();
-        $(".questionBody").append("<h2 class='gOver'>Game Over<h2>", "<h3>You Scored: " + playerScore + " Points! <h2>", '<hr>', "<input class='form-control' type='text' placeholder='Enter Your Initials' id='formInitials'>", '<button type="button" class="btn btn-primary" id="theScore">Submit</button>');
+        $(".questionBody").append("<h2 class='gOver'>Game Over<h2>", "<h3>You Scored: " + playerScore + " Points! <h2>", '<hr>', "<input class='form-control' type='text' placeholder='Enter Your Initials' id='formInitials'>", '<button type="button" class="btn btn-primary" id="subBtn">Submit</button>');
         $("#cBody").empty();
         $("#subBtn").on("click", function () {
             var scoreInitials = $("#formInitials").val();
-
+            printHigh();
             if (highScores === null) {
                 // nScore.score.push(playerScore);
                 // nScore.name.push(scoreInitials);
@@ -125,6 +125,7 @@ $(document).ready(function () {
         console.log(question);
     };
     function printHigh() {
+        empty();
         $("#cBody").empty();
         $("h1").text("High Score");
         highScores.sort();

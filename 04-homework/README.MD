@@ -1,16 +1,15 @@
 
-v.08
+This is a triva game that uses javaScrip and jquery
 
-This is a random password generator.  
+Start button starts the game--- 100seconds is added to the timer. 
 
-The generator has 5 variables you can include in your desired password
+As you answer the questions your are rewared 10 points for every correction answer
 
-    -Length (8-120)
-    -Special Characters
-    -Numeric Characters
-    -Lowercase Characters
-    -Uppercase Characters
+if you answer incorrectly 10 seconds is deducted from the timer
 
-The next iteration of this generator will include a copy button.
+When the timer reaches zero your directed to a page where you can enter your initials to be added a highscore list
+
+The next page is said highscore list that is saved to your browser.
+
 
 <img src="img/screenShot.png">
