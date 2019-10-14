@@ -12,4 +12,6 @@ When the timer reaches zero your directed to a page where you can enter your ini
 The next page is said highscore list that is saved to your browser.
 
 
-<img src="img/screenShot.png">
+<img src="img/gameOver.png">
+<img src="img/gameScreenShot.png">
+<img src="img/startScreenShot.png">
