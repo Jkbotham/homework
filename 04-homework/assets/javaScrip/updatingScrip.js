@@ -8,10 +8,9 @@ $(document).ready(function () {
 
     $("#startButton").on("click", function () {
         questionSort();
-        empty();
-        timeInt();
+        startGame();
+        // timeInt();
         writeQuestion();
-        writeAnswer();
         console.log(highScores, nScore)
     });
 
@@ -24,14 +23,35 @@ $(document).ready(function () {
         printHigh();
     })
 
+    $(".nQuestion").on("click", function () {
+        x++;
+        $("#rightWrong").empty();
+        writeQestion();
+    });
+
+    $(".answer").on("click", function () {
+        console.log($(this).text());
+        userAnswer();
+        if ($(this).text() === question[x].answer) {
+            playerScore += 10;
+            $(".answer").attr('disabled', 'disabled');
+            $("#rightWrong").text("That is correct! +10 points");
+        }
+        else {
+            $(".answer").attr('disabled', 'disabled');
+            $("#rightWrong").text("That is incorrect. -10 Seconds");
+            i -= 10;
+        }
+    });
 
 
     // Creates the question elements, inserts the question from randomized array.  Creates buttons for all answers an dassigns classes and appends them to the page.
     function writeQuestion() {
-        var titleQuestion = $("<h5>")
-        titleQuestion.attr("class", "pageQuestion");
-        titleQuestion.text(question[x].title);
-        $(".questionBody").append(titleQuestion, "<br>");
+        $("#pQuestion").text(question[x].title);
+        $("#answer1").text(question[x].choices[0]);
+        $("#answer2").text(question[x].choices[1]);
+        $("#answer3").text(question[x].choices[2]);
+        $("#answer4").text(question[x].choices[3]);
     };
 
     function writeAnswer() {
@@ -45,20 +65,7 @@ $(document).ready(function () {
         };
         $(".questionBody").append('<hr>');
         $("#nxtQuest").append('<button type="button" class="btn btn-primary btn-lg float-right nQuestion">Next Question</button>');
-        $(".uAnswer").on("click", function () {
-            console.log($(this).text());
-            userAnswer();
-            if ($(this).text() === question[x].answer) {
-                playerScore += 10;
-                $(".uAnswer").attr('disabled', 'disabled');
-                $("#nxtQuest").append("<h3 class='correct'>That is correct! +10 points</h3>")
-            }
-            else {
-                $("#nxtQuest").append("<h3 class='incorrect'>That is incorrect. -10 Seconds</h3>")
-                $(".uAnswer").attr('disabled', 'disabled');
-                i -= 10;
-            }
-        });
+        
     };
 
 
@@ -84,12 +91,7 @@ $(document).ready(function () {
         })
     }
     function userAnswer() {
-        $(".nQuestion").on("click", function () {
-            x++;
-            empty();
-            writeQuestion();
-            writeAnswer();
-        });
+
     };
 
 
@@ -137,7 +139,11 @@ $(document).ready(function () {
             $(".list").append(scoree);
             console.log(highScores);
         };
-        $("#list").append("</ol>")
+        $("#list").append("</ol>");
     };
+    function startGame() {
+        $("#startPage").attr("style","display: none");
+        $("#questionPage").removeAttr("style");
+    }
 });
 
