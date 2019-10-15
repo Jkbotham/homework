@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    var i = 10;
+    var i = 100;
     var x = 0;
     var playerScore = 0;
     var highScores = JSON.parse(localStorage.getItem("mScore"));
