@@ -6,6 +6,7 @@ $(document).ready(function () {
     
     $(".rowt").empty();
     
+    $("#currentDay").text(moment().format('dddd, MMMM Do'));
     var t = 9;
 
     for (i = 0; i < 9; i++) {
