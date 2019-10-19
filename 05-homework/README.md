@@ -8,4 +8,4 @@ Every text box saves its self to the browser so upon reload what you have entere
 
 as the hours go by the color will change from green to red to grey signifying whats coming what hour it is and which hours have passed.
 
-<img src="assests/img/workDayScheduler.png">
+<img src="assets/img/workDayScheduler.png">
