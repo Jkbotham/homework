@@ -1,7 +1,4 @@
 
-var t = 9;
-
-
 $(document).ready(function () {
     
     $(".rowt").empty();
@@ -24,7 +21,7 @@ $(document).ready(function () {
         var textColm = $("<div>");
         $(textColm).attr("class", "col-md-8 txtColm");
         var textArea = $("<textarea>");
-        $(textArea).attr("data", hourOne.format("hha"));
+        $(textArea).data("hour", hourOne.format("hha"));
 
         if (hourOne.isAfter(moment()) === true) {
             $(textArea).attr("class", "h-100 w-100 future");
@@ -38,8 +35,9 @@ $(document).ready(function () {
         $(divBtnCol).attr("class", "col-md-2 btnColm");
         var btn = $("<button>");
         $(btn).attr("class", "btn btn-lg h-100 w-100 saveBtn");
-        $(btn).attr("data", hourOne.format("hha"));
+        $(btn).data("hour", hourOne.format("hha"));
         $(btn).attr("type", "button");
+
         var lock = $("<i>");
         $(lock).attr("class", "fas fa-lock");
         $(btn).append(lock);
@@ -54,8 +52,9 @@ $(document).ready(function () {
         $(location).append(divRow);
 
         t++;
-        console.log(t);
-        console.log(hourOne.isAfter(moment()));
-        console.log(hourOne.isBefore(moment()));
     }
+
+    $(".saveBtn").on("click",function(){
+        console.log($(this).data("hour"))
+    })
 });
