@@ -36,17 +36,18 @@ $(document).ready(function () {
 
     $("#subBtn").on("click", function () {
         var scoreInitials = $("#formInitials").val();
+        console.log(scoreInitials);
         highScoreList();
-        printHigh();
-
         if (highScores === null) {
             nScore.push([playerScore, scoreInitials]);
             localStorage.setItem("mScore", JSON.stringify(nScore));
+          highScores = JSON.parse(localStorage.getItem("mScore"));
         }
         else {
             highScores.push([playerScore, scoreInitials]);
             localStorage.setItem("mScore", JSON.stringify(highScores));
         }
+        printHigh();
     });
 
     $("#highScore").on("click", function() {
@@ -112,6 +113,7 @@ $(document).ready(function () {
 
     function printHigh() {
         $("h1").text("High Scores");
+        console.log(highScore.length)
         highScores.sort();
         for (i = highScores.length - 1; i > -1; i--) {
             var tRow = $("<tr>");
