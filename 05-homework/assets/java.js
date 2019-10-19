@@ -2,23 +2,12 @@
 $(document).ready(function () {
 
     var lengthOfDay = 9
-
-
-
-    // if (localStorage.getItem('dailyActivity')) {
-    //     dailyActivity = JSON.parse(localStorage.getItem('dailyActivity'))
-    //   } else {
-    //     dailyActivity = [];
-    //   }
-
-
-    // $(".rowt").empty();
     
     $("#currentDay").text(moment().format('dddd, MMMM Do'));
 
     for (i = 9; i < lengthOfDay + 9; i++) {
         var hourOne = moment(i, "hh");
-        var location = $(".rowt");
+        var location = $(".firstColm");
 
 
         var divRow = $("<div>");
@@ -54,8 +43,6 @@ $(document).ready(function () {
         $(lock).attr("class", "fas fa-lock");
         $(btn).append(lock);
 
-
-
         $(divRow).append(hHour);
         $(textColm).append(textArea);
         $(divRow).append(textColm);
@@ -63,34 +50,22 @@ $(document).ready(function () {
         $(divRow).append(divBtnCol);
         $(location).append(divRow);
 
-
-
     }
 
     for (i = 9; i < lengthOfDay + 9; i++){
             
         var input = "#hour" + i;
-    
         var value = localStorage.getItem(input)
-    
         $(input).text(value);
     
     }
     $(".saveBtn").on("click",function(){
-
-        var id = ($(this).data('hour'));
-
-        // console.log($(input).val());
 
         for (i = 9; i < lengthOfDay + 9; i++){
             
             var input = "#hour" + i;
 
             localStorage.setItem(input, $(input).val());
-
-            console.log($(input).val())
-
-
         }
 
     })
