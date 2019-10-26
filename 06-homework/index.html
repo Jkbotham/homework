@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <title>Weather App</title>
+
+</head>
+
+<header class="jumbotron">
+  <h1 class="display-3 text-center">New York Times Search</h1>
+
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card text-center">
+        <div class="card-header text-left">
+          Search Perameters
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="form-group text">
+              <label for="searchTerms">Searh Terms:</label>
+              <input type="text" class="form-control" id="searchTerms" placeholder="">
+            </div>
+            <div class="form-group">
+              <label for="recordsDropDown">Example select</label>
+              <select class="form-control" id="recordsDropDown">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="searchTerms">Start Year (Optional):</label>
+              <input type="text" class="form-control" id="searchTerms" placeholder="">
+            </div>
+            <div class="form-group">
+              <label for="searchTerms">End Year (Optional):</label>
+              <input type="text" class="form-control" id="searchTerms" placeholder="">
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-secondary" id="searchBtn">Search</button>
+          <button type="submit" class="btn btn-secondary" id="clearResultsBtn">Clear Results</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card text-center">
+        <div class="card-header text-left">
+          Top Articles
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card w-90">
+              <div class="card-body cardArticle">
+                <h5 class="card-title"></h5>
+                <p class="card-text"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <body>
+
+
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+      <script src="assets/java.js"></script>
+    </body>
+
+</html>
