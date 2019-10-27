@@ -1,0 +1,49 @@
+li { 
+    cursor: pointer; 
+    list-style: none;
+}
+body {
+    margin: auto;
+}
+
+.card {
+    margin: .5rem;
+}
+
+.prevSearch {
+    padding-left: 0;
+}
+
+.main {
+    margin: auto;
+    padding: 0;
+}
+
+.dailyWeather {
+    min-width: 140px;
+    float: left;
+    
+}
+
+.jumbotron {
+    background-color: lightgray
+}
+
+.row {
+    margin-right: -50px;
+}
+
+.searchDiv {
+float: left;
+}
+
+.subBtn {
+    padding: 3px 4px 3px 4px;
+}
+
+.navbar {
+    padding: 0;
+}
+ .ulToday {
+     padding-left: 20px;
+ }
