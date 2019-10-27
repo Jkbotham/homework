@@ -34,6 +34,9 @@ $(".subBtn").on("click", function() {
              $(".dateDay" + z).text(moment().add(z,'days').format('DD/MM/YYYY'));
              $(".tempDay" + z).text("Temp: " + hourlyWeather.list[i].main.temp + "°F")
              $(".humidityDay" + z).text("Humidity: " + hourlyWeather.list[i].main.humidity + "%")
+             $(".iconDay" + z).attr("src","http://openweathermap.org/img/wn/" + hourlyWeather.list[i].weather[0].icon + "@2x.png")
+             $(".iconDay" + z).attr("alt",hourlyWeather.list[i].description)
+
             z++;
          }
      };
