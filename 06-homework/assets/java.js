@@ -86,7 +86,7 @@ $(document).ready(function () {
                 $(".dateDay" + z).text(moment().add(z, 'days').format('DD/MM/YYYY'));
                 $(".tempDay" + z).text("Temp: " + hourlyWeather.list[i].main.temp + "°F")
                 $(".humidityDay" + z).text("Humidity: " + hourlyWeather.list[i].main.humidity + "%")
-                $(".iconDay" + z).attr("src", "http://openweathermap.org/img/wn/" + hourlyWeather.list[i].weather[0].icon + "@2x.png")
+                $(".iconDay" + z).attr("src", "https://openweathermap.org/img/wn/" + hourlyWeather.list[i].weather[0].icon + "@2x.png")
                 $(".iconDay" + z).attr("alt", hourlyWeather.list[i].description)
                 z++;
             }
@@ -117,7 +117,7 @@ $(document).ready(function () {
             success: function (nowWeather) {
                 console.log(nowWeather);
                 $(".location").text(nowWeather.name)
-                $("#weatherIcon").attr("src", "http://openweathermap.org/img/wn/" + nowWeather.weather[0].icon + "@2x.png")
+                $("#weatherIcon").attr("src", "https://openweathermap.org/img/wn/" + nowWeather.weather[0].icon + "@2x.png")
                 $("#weatherIcon").attr("alt", nowWeather.weather[0].description)
                 $(".todayTemp").text("Temperature: " + nowWeather.main.temp + "°F")
                 $(".todayHumidity").text("Humidity: " + nowWeather.main.humidity + "%")
