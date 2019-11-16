@@ -5,7 +5,6 @@ const repoFile = require('./calls/repo');
 const inquirer = require("inquirer");
 const pdf = require('html-pdf');
 
-
 async function main() {
 
     const response = await inquirer.prompt([
@@ -28,7 +27,6 @@ async function main() {
     const userDataRes = await userCall.userCall(gitUser);
 
     console.log(userDataRes);
-    // console.log(repoResp)
 
     console.log(userDataRes.login)
 
@@ -39,11 +37,11 @@ async function main() {
 
 
 
-function creatPDF() {
+async function creatPDF() {
     try {
   
       const readHtml = fs.readFileSync('./pdf/newPDF.html', 'utf-8');
-      const options = { format: 'A3', 'renderDelay': 5000 };
+      const options = {height: '800px',width: '800px', renderDelay:'5000'};
        
       pdf.create(readHtml, options).toFile('./pdf/newPDF.pdf', function(err, res) {
         if (err) return console.log(err);
@@ -65,7 +63,49 @@ const webpage =
         <meta charset="utf-8">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="../style.css">
+        <style>
+            body{
+                background-color: lightsteelblue;
+            }
+            #topOfPage {
+                margin: auto;
+                background-color: darkgrey;
+                text-align: center;
+                max-width: 890px;
+            }
+            .container { 
+                background-color: lightsteelblue;
+                max-width: 900px;
+                margin:auto;
+            }
+            .center {
+                text-align: center;
+                margin: auto;
+            }
+            img {
+                border-radius: 50%;
+                border-style: solid;
+                border-color: darkslategray;
+                width: 200px;
+              }
+              a {
+                  font-size: 30px;
+                  color: #343a40;
+                  font-weight: bold;
+                  padding: 10px;
+              }
+              .lead {
+                  padding-top: 20px;
+              }
+              .card {
+                  float: left;
+                  width: 400px;
+                  min-height: 150px;
+                  text-align: center;
+                  margin: 40px;
+              }
+        </style>
+
         <title>PDF</title>
 
     </head>
