@@ -3,6 +3,8 @@ const fs = require("fs");
 const userCall = require('./calls/user');
 const repoFile = require('./calls/repo');
 const inquirer = require("inquirer");
+const pdf = require('html-pdf');
+
 
 async function main() {
 
@@ -38,41 +40,32 @@ async function main() {
 
 
 function creatPDF() {
-
-    var pdf = require('phantom-html2pdf');
-    const options = {
-        html: "./newPDF.html",
-        css: "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css",
-        paperSize: {width: "900px", height: "1000px"}
+    try {
+  
+      const readHtml = fs.readFileSync('./pdf/newPDF.html', 'utf-8');
+      const options = { format: 'A3', 'renderDelay': 5000 };
+       
+      pdf.create(readHtml, options).toFile('./pdf/newPDF.pdf', function(err, res) {
+        if (err) return console.log(err);
+        console.log(res); 
+      });
+  
+      console.log("Successfully wrote to newPDF.html");
+    } catch (err) {
+      console.log(err);
     }
-    pdf.convert(options, function(err, result) {
- 
-        /* Using a buffer and callback */
-        result.toBuffer(function(returnedBuffer) {});
-     
-        // /* Using a readable stream */
-        // var stream = result.toStream();
-     
-        // /* Using the temp file path */
-        // var tmpPath = result.getTmpPath();
-     
-        /* Using the file writer and callback */
-        result.toFile("output1.pdf", function() {});
-    });
-
-};
+  };
 
 
-const webpage = `<!doctype html>
+const webpage =  
+`<!doctype html>
     <html lang="en">
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="../style.css">
         <title>PDF</title>
 
     </head>
@@ -82,7 +75,7 @@ const webpage = `<!doctype html>
         <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="jumbotron"">
+                <div class="jumbotron jumbotron-fluid" id="topOfPage">
                 <h1 style="color:${response.favoriteColor}">${userDataRes.login}</h1>
                 <br>
                 <img class="img-fluid profilePic" src="${userDataRes.avatar_url}" alt="Profile Image">
@@ -101,7 +94,7 @@ const webpage = `<!doctype html>
             </div>
             <div class="row ">
             <div class="col-md-6">
-                <div class="card text-white bg-dark mb-3 center">
+                <div class="card text-white bg-dark mb-3 center width: 18rem;">
                 <div class="card-body">
                     <h2 class="card-title">Followers</h2>
                     <p class="card-text">${userDataRes.followers}</p>
@@ -120,8 +113,8 @@ const webpage = `<!doctype html>
             <br>
             <br>
             <div class="row">
-            <div class="col-md-6">
-                <div class="card text-white bg-dark mb-3 center">
+            <div class="col-md-6 align-middle">
+                <div class="card text-white bg-dark mb-3 center align-middle">
                 <div class="card-body">
                     <h2 class="card-title">GitHub Stars</h2>
                     <p class="card-text">${stars}</p>
@@ -139,15 +132,10 @@ const webpage = `<!doctype html>
             </div>
         </div>
         </div>
-
-
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </body>
     </html>`
 
-fs.writeFile("newPDF.html", webpage, function (err) {
+fs.writeFile("./pdf/newPDF.html", webpage, function (err) {
     if (err) {
         return console.log(err);
     }
