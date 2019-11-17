@@ -18,5 +18,5 @@ Things being displayed:
     - Link google with your location
 
 
-    ![Created PDF](./img/createdPDF.pdf "Flyer PDF")
-    ![gif of pdf being created](./img/theGif.gif "Creation of PDF")
+    ![Created PDF](/img/createdPDF.pdf "Flyer PDF")
+    ![gif of pdf being created](/img/theGif.gif "Creation of PDF")
