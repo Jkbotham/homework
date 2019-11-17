@@ -17,6 +17,6 @@ Things being displayed:
     - Link to your GitHub and blog
     - Link google with your location
 
-<img src="/img/createdPDF.pdf" alt="Created PDF">
+<img src="09-homework/img/createdPDF.pdf" alt="Created PDF">
 <img src="/img/theGif.gif" alt="gif of pdf being created">
 
