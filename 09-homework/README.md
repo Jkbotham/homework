@@ -17,7 +17,6 @@ Things being displayed:
     - Link to your GitHub and blog
     - Link google with your location
 
-<img src="09-homework/img/createdPDF.pdf" alt="Created PDF">
-<embed src="img/createdPDF.PDF" width="500" height="375"  type="application/pdf">
-<img src="img/theGif.GIF" alt="gif of pdf being created">
+<img src="/img/createdPDF.pdf" alt="Created PDF">
+<img src="/img/theGif.gif" alt="gif of pdf being created">
 
