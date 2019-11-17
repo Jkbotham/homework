@@ -41,7 +41,7 @@ async function creatPDF() {
     try {
   
       const readHtml = fs.readFileSync('./pdf/newPDF.html', 'utf-8');
-      const options = {height: '800px',width: '800px', renderDelay:'5000'};
+      const options = {height: '900px',width: '800px', renderDelay:'1000'};
        
       pdf.create(readHtml, options).toFile('./pdf/newPDF.pdf', function(err, res) {
         if (err) return console.log(err);
@@ -64,8 +64,12 @@ const webpage =
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <style>
+        canvas{
+            background-color:lightsteelblue; 
+            }
             body{
                 background-color: lightsteelblue;
+                height:1200px;
             }
             #topOfPage {
                 margin: auto;
