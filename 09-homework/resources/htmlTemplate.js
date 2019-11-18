@@ -1,4 +1,10 @@
-<!doctype html>
+
+module.exports = {
+
+    
+// HTML Template to be passed back to index file to create PDF from code below
+pdfHtml: (userFavColor, userDataRes, stars) => {
+const website = `<!doctype html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
@@ -62,11 +68,11 @@
     <div class="row">
         <div class="col-md-12">
             <div class="jumbotron jumbotron-fluid" id="topOfPage">
-            <h1 style="color:green">Jkbotham</h1>
+            <h1 style="color:${userFavColor}">${userDataRes.login}</h1>
             <br>
-            <img class="img-fluid profilePic" src="https://avatars3.githubusercontent.com/u/53350142?v=4" alt="Profile Image">
+            <img class="img-fluid profilePic" src="${userDataRes.avatar_url}" alt="Profile Image">
             <br>
-            <p class="lead"><a href="https://www.google.com/maps/search/?api=1&Minneapolis, MN">Minneapolis, MN</a> -- <a href="https://github.com/Jkbotham">GitHub</a> -- <a href="JamesBotham.com">Blog</a></p>
+            <p class="lead"><a href="https://www.google.com/maps/search/?api=1&${userDataRes.location}">${userDataRes.location}</a> -- <a href="${userDataRes.html_url}">GitHub</a> -- <a href="${userDataRes.blog}">Blog</a></p>
 
             </div>
         </div>
@@ -74,7 +80,7 @@
         <div class="row">
         <div class="col-md-12 center">
             <br>
-            <h3>New to web development,  excited to explore.</h3>
+            <h3>${userDataRes.bio}</h3>
             <br>
         </div>
         </div>
@@ -83,7 +89,7 @@
             <div class="card text-white bg-dark mb-3 center width: 18rem;">
             <div class="card-body">
                 <h2 class="card-title">Followers</h2>
-                <p class="card-text">0</p>
+                <p class="card-text">${userDataRes.followers}</p>
             </div>
             </div>
         </div>
@@ -91,7 +97,7 @@
             <div class="card text-white bg-dark mb-3 center">
             <div class="card-body">
                 <h2 class="card-title">Public Repositories</h2>
-                <p class="card-text">4</p>
+                <p class="card-text">${userDataRes.public_repos}</p>
             </div>
             </div>
         </div>
@@ -103,7 +109,7 @@
             <div class="card text-white bg-dark mb-3 center align-middle">
             <div class="card-body">
                 <h2 class="card-title">GitHub Stars</h2>
-                <p class="card-text">0</p>
+                <p class="card-text">${stars}</p>
             </div>
             </div>
         </div>
@@ -111,7 +117,7 @@
             <div class="card text-white bg-dark mb-3 center">
             <div class="card-body">
                 <h2 class="card-title">Following</h2>
-                <p class="card-text">0</p>
+                <p class="card-text">${userDataRes.following}</p>
             </div>
             </div>
         </div>
@@ -119,4 +125,8 @@
     </div>
     </div>
 </body>
-</html>
+</html>`
+
+return website;
+        }
+    }
