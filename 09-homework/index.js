@@ -5,6 +5,8 @@ const repoFile = require('./calls/repo');
 const inquirer = require("inquirer");
 const pdf = require('html-pdf');
 
+
+// Main function that starts the app
 async function main() {
 
     const response = await inquirer.prompt([
@@ -36,7 +38,7 @@ async function main() {
     });
 
 
-
+// Creates the PDf by reading the created html based on the ajax calls
 async function creatPDF() {
     try {
   
@@ -54,7 +56,7 @@ async function creatPDF() {
     }
   };
 
-
+// Website code to be written to html after ajax calls are finished
 const webpage =  
 `<!doctype html>
     <html lang="en">
@@ -179,6 +181,8 @@ const webpage =
     </body>
     </html>`
 
+
+// Writes html code to new html after ajax calls are complete
 fs.writeFile("./pdf/newPDF.html", webpage, function (err) {
     if (err) {
         return console.log(err);
@@ -191,66 +195,3 @@ fs.writeFile("./pdf/newPDF.html", webpage, function (err) {
 
 main();
 
-
-    // console.log(userDataRes)
-    //     .then(async function (response) {
-    //         const gitUser = response.username;
-    //         const repoResp = await repoCallFunction(gitUser);
-    //         const userDataRes = await userCallFunction(gitUser);
-    //         console.log(repoResp);
-    //         console.log(userDataRes);
-
-
-            // const queryUrl = `https://api.github.com/users/${response.username}/repos?per_page=100`;
-
-            // axios
-            //     .get(queryUrl)
-            //     .then(function (res) {
-            //         console.log(res.data);
-            //         // avatar
-            //         res.data[0].avatar_url
-
-            //         // Username
-            //         res.data[0].login
-
-            //         // Link to GitHub Profile
-            //         res.data[0].html_url
-
-            //         // link to blog
-            //         res.data[0].blog
-
-            //         // User Bio
-            //         res.data[0].bio
-
-            //         // Number of public repos
-            //         res.data[0].public_repos
-
-            //         // Number of followers
-            //         res.data[0].followers
-
-            //         // Number of GitHub Stars
-            //         res.data[0]
-            //     })
-
-        // })
-
-    // async function repoCallFunction(imput) {
-    //     const response = await repoFile.repoCall(imput);
-
-    //     return response
-        // const secondCall = await userCall.userCall(response.username);
-        // console.log(secondCall);    
-    // }
-
-    // async function userCallFunction(imput) {
-    //     const response = await userCall.userCall(imput);
-
-    //     return response
-        // const secondCall = await userCall.userCall(response.username);
-        // console.log(secondCall);    
-    // }
-    // .then(function (response){
-    //     const secondCall = userCall.userCall(response.username);
-    //     console.log(secondCall);
-
-    // })
