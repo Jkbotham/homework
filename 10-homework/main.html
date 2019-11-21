@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+  <title>James Homewrok</title>
+</head>
+
+<body>
+    <h1>async function () {
+
+
+    const response = await inquirer.prompt([
+        {
+            type: "input",
+            message: "Employees Name",
+            name: "name",
+        },
+        {
+            type: "list",
+            message: "Job Title",
+            choices: ["Manager", "Engineer", "Intern"],
+            name: "jobTitle"
+        },
+        {
+            input: "input",
+            message: "Employee ID",
+            name: "ID (numbers)",
+            validate: function(ID){
+               const check = ID.match(/[0-9]/g)
+                if(check){
+                    return true
+                }
+                else{
+                return 'IDs only use numbers. Please check the ID and try again'
+                }
+            }
+        },
+        {
+            type: "input",
+            message: "Employee Email",
+            name: "email",
+            validate: function (email) {
+                if (validator.validate(email)) {
+                    return true
+                }
+                else {
+                    return 'Please enter a valid email'
+                };
+            }
+        }
+    ])
+
+    if (response.jobTitle === "Manager") {
+        const managerResponse = await inquirer.prompt([
+            {
+                type: "input",
+                message: "Office Number",
+                name: "officeNumber"
+            }
+        ])
+        response.officeNumber = managerResponse.officeNumber;
+        console.log(response);
+        return response
+    }
+    else if (response.jobTitle === "Engineer") {
+        const engineerResponse = await inquirer.prompt([
+            {
+                type: "input",
+                message: "GitHub Username",
+                name: "gitHub"
+            },
+        ])
+        response.gitHub = engineerResponse.gitHub;
+        console.log(response);
+        return response
+    }
+    else {
+        const internResponse = await inquirer.prompt([
+            {
+                type: "input",
+                message: "School Name",
+                name: "schoolName"
+            }
+        ])
+        response.schoolName = internResponse.schoolName
+        console.log(response);
+        return response
+        
+    }
+}</h1>
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
