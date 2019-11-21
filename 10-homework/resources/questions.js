@@ -1,8 +1,25 @@
 
 const inquirer = require("inquirer");
 const validator = require("email-validator");
+const employees = []
 
-
+const anotherQuestion = async function(prevResponse){
+    const another = await inquirer.prompt ([
+         {
+             type: "confirm",
+             message: "Enter another employee?",
+             name: "answer"
+         }
+     ])
+     employees.push(prevResponse);
+    //  console.log(another.answer)
+    //  console.log(employees);
+     if(another.answer){
+         await startQuestion();
+     }else{
+         return
+     }
+ }
 
 const startQuestion = async function () {
 
@@ -24,8 +41,7 @@ const startQuestion = async function () {
             message: "Employee ID(Numbers Only)",
             name: "ID",
             validate: function(ID){
-               const check = ID.match(/[0-9]/gi)
-               console.log(check);
+               const check = ID.match(/[0-9]/ig)
                 if(check){
                     return true
                 }
@@ -57,9 +73,10 @@ const startQuestion = async function () {
                 name: "officeNumber"
             }
         ])
+        response.subInput = "Office Number: "
         response.officeNumber = managerResponse.officeNumber;
-        console.log(response);
-        return response
+        // console.log(response);
+        await anotherQuestion(response)
     }
     else if (response.jobTitle === "Engineer") {
         const engineerResponse = await inquirer.prompt([
@@ -69,9 +86,10 @@ const startQuestion = async function () {
                 name: "gitHub"
             },
         ])
+        response.subInput = "GitHub:"
         response.gitHub = engineerResponse.gitHub;
-        console.log(response);
-        return response
+        // console.log(response);
+        await anotherQuestion(response)
     }
     else {
         const internResponse = await inquirer.prompt([
@@ -81,11 +99,16 @@ const startQuestion = async function () {
                 name: "schoolName"
             }
         ])
+        response.subInput = "School:"
         response.schoolName = internResponse.schoolName
-        console.log(response);
-        return response
+        // console.log(response);
+        await anotherQuestion(response);
         
     }
+ 
 }
 
-module.exports = startQuestion;
+module.exports = {
+    start: startQuestion(),
+    employees: employees
+}

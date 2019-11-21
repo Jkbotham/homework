@@ -1,7 +1,7 @@
 const response = require("../resources/questions")
 
 
-const main = `<!doctype html>
+const main = (cards) => {`<!doctype html>
 <html lang="en">
 
 <head>
@@ -18,7 +18,13 @@ const main = `<!doctype html>
 </head>
 
 <body>
-    <h1>${response}</h1>
+    <div class="row">
+      <div class="col-md-12">
+        <div>
+          ${cards}
+        </div>
+      </div>
+    </div>
 
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -32,6 +38,6 @@ const main = `<!doctype html>
     crossorigin="anonymous"></script>
 </body>
 
-</html>`
+</html>`}
 
 module.exports = main
