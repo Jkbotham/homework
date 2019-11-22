@@ -4,7 +4,7 @@ const inquirer = require("inquirer");
 const validator = require("email-validator");
 
 module.exports = {
-
+// Object of question functions to return user input
     employee: async function () {
         const res = await inquirer.prompt([
             {
@@ -46,10 +46,10 @@ module.exports = {
                 }
             }
         ])
-        return res 
+        return res
     },
     engineer: async function () {
-       const res = await inquirer.prompt([
+        const res = await inquirer.prompt([
             {
                 type: "input",
                 message: "GitHub Username",
@@ -69,7 +69,7 @@ module.exports = {
         return res.officeNumber
     },
     intern: async function () {
-       const res = await inquirer.prompt([
+        const res = await inquirer.prompt([
             {
                 type: "input",
                 message: "School Name",
@@ -78,14 +78,14 @@ module.exports = {
         ])
         return res.schoolName
     },
-    restart: async function(){
-        const res = await inquirer.prompt ([
-             {
-                 type: "confirm",
-                 message: "Enter another employee?",
-                 name: "answer"
-             }
-         ])
-         return res.answer
-     }
+    restart: async function () {
+        const res = await inquirer.prompt([
+            {
+                type: "confirm",
+                message: "Enter another employee?",
+                name: "answer"
+            }
+        ])
+        return res.answer
+    }
 }
