@@ -34,8 +34,7 @@ async function main() {
 
     let totalStarGazers = 0;
     repoResp.forEach((obj) => {
-        stars = obj.stargazers_count
-         + totalStarGazers;
+        stars = obj.stargazers_count + totalStarGazers;
     });
     
     // Passes both repo calls to the HTML template and returns the HTML code.
