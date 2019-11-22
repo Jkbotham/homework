@@ -1,0 +1,77 @@
+
+body {
+    margin: auto;
+}
+
+.jumbotron {
+    background-color: #F7F9FA;
+    color: #7F9172;
+    font-weight: bold;
+    margin: auto;
+    text-align: center;
+    border-bottom-style: groove;
+    border-color: #F7F9FA;
+}
+
+.display-4 {
+    font-weight: 400;
+}
+
+.insertCard {
+    max-width: 1200px;
+    margin: auto;
+    background-color:#F7F9FA;
+    border-bottom-style: groove;
+    border-left-style: groove;
+    border-right-style: groove;
+    border-color: #F7F9FA;
+    padding: 30px;
+}
+
+.mainCard{
+    box-shadow: inset;
+    max-width: 300px;
+    float: left;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    margin: 15px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+.engineer {
+    background-color: #B97D67;
+    padding: 10px;
+    color: white;
+    text-shadow: 2px black;
+}
+
+.manager{
+    background-color:#7F9172;
+    padding: 10px;;
+    color: white;
+    text-shadow: 2px black;
+}
+.intern {
+    background-color:#678EBE;
+    padding: 10px;
+    color: white;
+    text-shadow: 2px black;
+}
+.card {
+    width: 100%;
+    padding: 5px;
+}
+
+p{
+    margin-bottom: 0;
+}
+
+.break{
+    padding: 5px;
+}
+
+.bold{
+    font-weight: bold;
+}
