@@ -85,7 +85,7 @@ function removeEmployee() {
             choices: employees,
             name: "id"
         }
-    ]).then(function (answer) {
+    ]).then(answer => {
         connection.query("DELETE FROM employee WHERE id = ?", answer.id, function (err, results) {
             if (err) {
                 console.log(err)
