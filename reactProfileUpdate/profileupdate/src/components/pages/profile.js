@@ -1,5 +1,4 @@
 import React from "react";
-import { a } from 'react-router-dom';
 import "../../assets/css/style.css"
 
 
@@ -58,14 +57,14 @@ function Profile() {
                                 </div>
                                 <div className="col-md-8">
                                     <div className="card-body">
-                                        <a to="contact.html">
+                                        <a href="contact.html">
                                             {/* <h5 className="card-title dkColor">Working Together</h5> */}
                                         </a>
                                         <br />
                                         <ul>
                                             <li><a href="https://github.com/Jkbotham"><h6 className="dkColor">Github</h6></a></li>
                                             <li><a href="https://www.aedin.com/in/james-botham-2949072b/"><h6 className="dkColor">Linkedin</h6></a></li>
-                                            <li><a href="assets/images/resume.pdf"><h6 className="dkColor">Resume</h6></a></li>
+                                            <li><a href="https://www.jamesbotham.com/assets/Resume.pdf"><h6 className="dkColor">Resume</h6></a></li>
                                         </ul>
                                     </div>
                                 </div>
